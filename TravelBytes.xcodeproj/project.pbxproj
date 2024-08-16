@@ -14,6 +14,9 @@
 		A405BD7E2C6EF9F0004284A1 /* TravelBytesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A405BD7D2C6EF9F0004284A1 /* TravelBytesTests.swift */; };
 		A405BD882C6EF9F0004284A1 /* TravelBytesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A405BD872C6EF9F0004284A1 /* TravelBytesUITests.swift */; };
 		A405BD8A2C6EF9F0004284A1 /* TravelBytesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A405BD892C6EF9F0004284A1 /* TravelBytesUITestsLaunchTests.swift */; };
+		A405BD982C6F02CA004284A1 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A405BD972C6F02CA004284A1 /* SplashView.swift */; };
+		A405BD9A2C6F02E3004284A1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A405BD992C6F02E3004284A1 /* OnboardingView.swift */; };
+		A405BD9C2C6F02F9004284A1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A405BD9B2C6F02F9004284A1 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		A405BD832C6EF9F0004284A1 /* TravelBytesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TravelBytesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A405BD872C6EF9F0004284A1 /* TravelBytesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelBytesUITests.swift; sourceTree = "<group>"; };
 		A405BD892C6EF9F0004284A1 /* TravelBytesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelBytesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A405BD972C6F02CA004284A1 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		A405BD992C6F02E3004284A1 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A405BD9B2C6F02F9004284A1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,7 @@
 		A405BD6B2C6EF9EF004284A1 /* TravelBytes */ = {
 			isa = PBXGroup;
 			children = (
+				A405BD962C6F02A6004284A1 /* Views */,
 				A405BD6C2C6EF9EF004284A1 /* TravelBytesApp.swift */,
 				A405BD6E2C6EF9EF004284A1 /* ContentView.swift */,
 				A405BD702C6EF9F0004284A1 /* Assets.xcassets */,
@@ -125,6 +132,16 @@
 				A405BD892C6EF9F0004284A1 /* TravelBytesUITestsLaunchTests.swift */,
 			);
 			path = TravelBytesUITests;
+			sourceTree = "<group>";
+		};
+		A405BD962C6F02A6004284A1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A405BD972C6F02CA004284A1 /* SplashView.swift */,
+				A405BD992C6F02E3004284A1 /* OnboardingView.swift */,
+				A405BD9B2C6F02F9004284A1 /* HomeView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +275,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A405BD6F2C6EF9EF004284A1 /* ContentView.swift in Sources */,
+				A405BD9A2C6F02E3004284A1 /* OnboardingView.swift in Sources */,
 				A405BD6D2C6EF9EF004284A1 /* TravelBytesApp.swift in Sources */,
+				A405BD9C2C6F02F9004284A1 /* HomeView.swift in Sources */,
+				A405BD982C6F02CA004284A1 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
