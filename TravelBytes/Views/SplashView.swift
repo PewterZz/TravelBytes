@@ -8,8 +8,33 @@
 import SwiftUI
 
 struct SplashView: View {
+    @State private var navigateToLogin = false
+    @State private var splashFinished = false
+    
     var body: some View {
-        AnimationView()
+        NavigationStack {
+            ZStack {
+                if !splashFinished {
+                    AnimationView()
+                        .transition(.opacity)
+                }
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
+                    withAnimation(.easeOut(duration: 1)) {
+                        splashFinished = true
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        navigateToLogin = true
+                    }
+                }
+            }
+            .navigationDestination(isPresented: $navigateToLogin) {
+                OnboardingView()
+                    .navigationBarBackButtonHidden(true)
+            }
+        }
     }
 }
 
@@ -58,7 +83,9 @@ struct AnimationView: View {
             Image("crumbs")
                 .offset(CGSize(width: 15.0, height: 10.0)).zIndex(2.0)
                 .opacity(0.8)
-                .modifier(CrumbsFalling(index: 0, animateAppear: animateAppear, animateFall: animateFall))
+                .modifier(CrumbsFalling(index: 0, 
+                                        animateAppear: animateAppear,
+                                        animateFall: animateFall))
             Image("crumbs")
                 .offset(CGSize(width: 40.0, height: 10.0))
                 .zIndex(2.0).opacity(0.8)
@@ -204,7 +231,7 @@ struct AnimationLayout: Layout {
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
         return UIScreen.main.bounds.size
     }
-
+    
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
         for index in subviews.indices {
             let subview = subviews[index]
@@ -229,7 +256,8 @@ struct AnimationLayout: Layout {
             let finalPosition = animateDrop[index] ? dropOffset : initialOffset
 
             subview.place(
-                at: CGPoint(x: bounds.midX + finalPosition.width, y: bounds.midY + finalPosition.height),
+                at: CGPoint(x: bounds.midX + finalPosition.width, 
+                            y: bounds.midY + finalPosition.height),
                 anchor: .center,
                 proposal: .unspecified
             )
@@ -283,6 +311,9 @@ struct EatingAnimationBottom: ViewModifier {
 }
 
 struct CrumbsFalling: ViewModifier {
+    
+    // MARK: - Crumbs Animation
+    
     var index: Int
     var animateAppear: Bool
     var animateFall: Bool

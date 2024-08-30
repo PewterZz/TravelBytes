@@ -1,18 +1,31 @@
-//
-//  TabView.swift
-//  TravelBytes
-//
-//  Created by Peter Subrata on 21/8/2024.
-//
-
 import SwiftUI
 
-struct TabView: View {
+struct TabsView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView {
+            HomeView()
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("Home")
+                }
+            
+            Text("Search")
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                    Text("Search")
+                }
+            
+            Text("Notifications")
+                .tabItem {
+                    Image(systemName: "bell")
+                    Text("Notifications")
+                }
+            
+            Text("Profile")
+                .tabItem {
+                    Image(systemName: "person")
+                    Text("Profile")
+                }
+        }
     }
-}
-
-#Preview {
-    TabView()
 }
