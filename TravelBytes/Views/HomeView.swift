@@ -14,47 +14,50 @@ struct HomeView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
-                    ZStack(alignment: .topLeading) {
-                        Color(red: 0.8, green: 0.4, blue: 0.2)
-                            .edgesIgnoringSafeArea(.top)
+                ZStack(alignment: .topLeading) {
+                    Color(hex: "CE4711")
+                    .edgesIgnoringSafeArea(.top)
                         
-                        VStack(alignment: .leading, spacing: 10) {
-                            Spacer()
+                    VStack(alignment: .leading, spacing: 10) {
+                    Spacer()
                             
-                            Text("Hello Julie!")
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
+                    Text("Hello, Julie!")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color(hex: "FEEAB8"))
                             
-                            Text("What are you craving for today?")
-                                .font(.title2)
-                                .foregroundColor(.white)
+                    Text("What are you craving for today?")
+                    .font(.title2)
+                    .foregroundColor(Color(hex: "FEEAB8"))
                             
-                            HStack {
-                                Image(systemName: "magnifyingglass")
-                                    .foregroundColor(.white)
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                        .foregroundColor(Color(hex: "FEEAB8"))
                                 
-                                TextField("Search here", text: .constant(""))
-                                    .onTapGesture {
-                                        navigateToSearchResults = true
-                                    }
-                                    .foregroundColor(.white)
-                            }
-                            .padding()
-                            .background(Color.white.opacity(0.3))
-                            .cornerRadius(10)
-                        }
-                        .padding()
+                        CustomPlaceholderTextField(
+                            placeholder: Text("Search here").foregroundColor(Color(hex: "FEEAB8")),
+                            text: .constant(""))
+                                .onTapGesture {
+                                    navigateToSearchResults = true
+                                }
+                                .foregroundColor(Color(hex: "FEEAB8"))
                     }
-                    .frame(maxHeight: .infinity)
-                    
-                    SectionView(sectionTitle: "Breakfast", items: breakfastItems)
-                    
-                    SectionView(sectionTitle: "Lunch", items: lunchItems)
-                    
-                    SectionView(sectionTitle: "Dinner", items: dinnerItems)
+                    .padding()
+                    .background(Color(hex: "E38F5A"))
+                    .cornerRadius(10)
                 }
+                .padding()
             }
+            .frame(maxHeight: .infinity)
+                    
+            SectionView(sectionTitle: "Breakfast", items: breakfastItems)
+                    
+            SectionView(sectionTitle: "Lunch", items: lunchItems)
+                    
+            SectionView(sectionTitle: "Dinner", items: dinnerItems)
+        }
+    }
+            .background(Color(hex: "FEEAB8"))
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("")
             .background(
@@ -62,6 +65,20 @@ struct HomeView: View {
                     EmptyView()
                 }
             )
+        }
+    }
+}
+
+struct CustomPlaceholderTextField: View {
+    var placeholder: Text
+    @Binding var text: String
+    var editingChanged: (Bool) -> Void = { _ in }
+    var commit: () -> Void = { }
+
+    var body: some View {
+        ZStack(alignment: .leading) {
+            if text.isEmpty { placeholder }
+            TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit)
         }
     }
 }
@@ -75,15 +92,15 @@ struct SectionView: View {
             HStack {
                 Text(sectionTitle)
                     .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(.orange)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color(hex: "CE4711"))
                 
                 Spacer()
                 
                 Button("View all") {
 
                 }
-                .foregroundColor(.orange)
+                .foregroundColor(Color(hex: "CE4711"))
             }
             .padding([.leading, .trailing])
             
@@ -123,21 +140,21 @@ struct FoodItemView: View {
 
             Text(item.name)
                 .font(.headline)
-                .foregroundColor(.orange)
+                .foregroundColor(Color(hex: "CE4711"))
             
             HStack(spacing: 2) {
                 ForEach(0..<item.rating) { _ in
                     Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
+                        .foregroundColor(Color(hex: "FCB814"))
                 }
                 ForEach(item.rating..<5) { _ in
                     Image(systemName: "star")
-                        .foregroundColor(.yellow)
+                        .foregroundColor(Color(hex: "FCB814"))
                 }
             }
         }
         .padding()
-        .background(Color.yellow.opacity(0.2))
+        .background(Color(hex:"FEEAB8"))
         .frame(width: 180, height: 200)
         .cornerRadius(10)
     }
@@ -149,38 +166,50 @@ struct SearchResultsView: View {
         VStack(alignment: .leading) {
             HStack {
                 Text("Hello, Julie")
-                    .font(.title)
+                    .font(.title2)
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(hex: "FEEAB8"))
                 
                 Spacer()
                 
                 Button(action: {
                 }) {
                     Image(systemName: "xmark")
-                        .foregroundColor(.white)
+                        .foregroundColor(Color(hex: "FEEAB8"))
                         .font(.title)
                 }
             }
-            .padding()
-            .background(Color(red: 0.8, green: 0.4, blue: 0.2))
+            .padding(.horizontal)
+            .padding(.top)
+            .background(Color(hex: "CE4711"))
+                        
+            Text("What are you craving for today?")
+            .font(.title2)
+            .foregroundColor(Color(hex: "FEEAB8"))
+            .padding([.leading, .bottom])
             
             HStack {
                 Image(systemName: "magnifyingglass")
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(hex: "FEEAB8"))
                 
-                TextField("Search here", text: $searchText)
-                    .foregroundColor(.black)
+                CustomPlaceholderTextField(
+                    placeholder: Text("Search here").foregroundColor(Color(hex: "FEEAB8")),
+                    text: $searchText)
+                        .foregroundColor(Color(hex: "FEEAB8"))
             }
             .padding()
-            .background(Color.white.opacity(0.3))
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                .stroke(Color(hex: "FEEAB8"), lineWidth: 2) //search bar outline
+                .background(Color(hex: "CE4711"))
+            )
             .cornerRadius(10)
             .padding(.horizontal)
             
             Text("RECENT")
                 .font(.headline)
                 .fontWeight(.bold)
-                .foregroundColor(.white)
+                .foregroundColor(Color(hex: "FEEAB8"))
                 .padding([.leading, .top])
             
             List {
@@ -192,27 +221,32 @@ struct SearchResultsView: View {
                         VStack(alignment: .leading) {
                             Text(item.name)
                                 .font(.headline)
-                                .foregroundColor(.black)
+                                .foregroundColor(Color(hex: "FEEAB8"))
+                            
                             
                             Text(item.address)
                                 .font(.subheadline)
-                                .foregroundColor(.black)
+                                .foregroundColor(Color(hex: "FEEAB8"))
                             
                             HStack {
                                 Text(item.status)
-                                    .foregroundColor(item.isOpen ? .green : .red)
+                                    .foregroundColor(item.isOpen ? Color(hex: "B4D829") : Color(hex: "FCB814"))
                                 Text("Opens \(item.opensAt)")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Color(hex: "FEEAB8"))
+                                    .fontWeight(.semibold)
                             }
                         }
                     }
                     .padding(.vertical, 8)
+                    .background(Color(hex: "CE4711"))
+                    .cornerRadius(10)
                 }
+                .listRowBackground(Color(hex: "CE4711"))
             }
             .listStyle(PlainListStyle())
-            .background(Color(red: 0.8, green: 0.4, blue: 0.2))
+            .background(Color(hex: "CE4711"))
         }
-        .background(Color(red: 0.8, green: 0.4, blue: 0.2))
+        .background(Color(hex: "CE4711"))
         .ignoresSafeArea(edges: .bottom)
     }
     
@@ -224,6 +258,7 @@ struct SearchResultsView: View {
         }
     }
 }
+
 
 struct FoodItem: Identifiable {
     let id = UUID()
@@ -242,18 +277,18 @@ struct RecentSearchItem: Identifiable {
 }
 
 let breakfastItems = [
-    FoodItem(name: "Embassy Cafe", imageName: "https://www.realcommercial.com.au/news/wp-content/uploads/2023/09/capi_a05a20adbce5a60da324afa37d20e359_4be686411bb04a1b937f314111c5baf2.jpeg", rating: 5),
-    FoodItem(name: "The Hardware Societe", imageName: "https://tb-static.uber.com/prod/image-proc/processed_images/ef6466f72b49cc22b05de729bf13a244/fb86662148be855d931b37d6c1e5fcbe.jpeg", rating: 5)
+    FoodItem(name: "Embassy Cafe", imageName: "https://media.discordapp.net/attachments/1267387405045071912/1279142595695480935/image.png?ex=66d35de0&is=66d20c60&hm=59a12e2e8b5a949eab19a665eebd4b05d1301785498dc2674676bbac077bde4d&=&format=webp&quality=lossless&width=700&height=492", rating: 5),
+    FoodItem(name: "The Hardware Societe", imageName: "https://media.discordapp.net/attachments/1267387405045071912/1279142618680262706/image.png?ex=66d35de5&is=66d20c65&hm=7c27e2aad990d1f9fafe393c077b163659b69482e060f5e93ee5c5eff35bd083&=&format=webp&quality=lossless&width=700&height=492", rating: 5)
 ]
 
 let lunchItems = [
-    FoodItem(name: "Kim Soju", imageName: "https://whatson.melbourne.vic.gov.au/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWt5TURsbFpqSTBaQzAxT1RVMUxUUTVOMlF0WVRSa01DMDJaREkyTVRjMFpqTTVZallHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--7101e896c08d7d4f21f3ca1fe431fe04a0cb75a4/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2REdkeVlYWnBkSGxKSWd0RFpXNTBaWElHT3daVU9oTnlaWE5wZW1WZmRHOWZabWxzYkZzSGFRSndBMmtDVGdJPSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--f3876e1fcc2db92cdffea604834734701decf454/ed1fd871-712e-4c99-bb24-6619c48231c1.jpg", rating: 4),
-    FoodItem(name: "Udon Izakaya Maedaya", imageName: "https://tb-static.uber.com/prod/image-proc/processed_images/3e980af7491f042db433c5f5e986c428/3ac2b39ad528f8c8c5dc77c59abb683d.jpeg", rating: 5)
+    FoodItem(name: "Kim Soju", imageName: "https://media.discordapp.net/attachments/1267387405045071912/1279142650318028821/image.png?ex=66d35ded&is=66d20c6d&hm=0fa59747abf11406ed4d24e0cf6ec341dc3292d6fcb13c251492b783027fdeff&=&format=webp&quality=lossless&width=700&height=492", rating: 4),
+    FoodItem(name: "Udon Izakaya Maedaya", imageName: "https://media.discordapp.net/attachments/1267387405045071912/1279142705120808971/image.png?ex=66d35dfa&is=66d20c7a&hm=7a171cf60e6e4170ac7748a39668d89c56688ce25bc1222110cd04108dfd6040&=&format=webp&quality=lossless&width=700&height=492", rating: 5)
 ]
 
 let dinnerItems = [
-    FoodItem(name: "ABC Chicken", imageName: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9SYjDo06V5usuVjEOCVvMhyfaAhvH-lS2Qg&s", rating: 4),
-    FoodItem(name: "El Rincon", imageName: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZVQJFwa4HZKap21e2IBpwP_U7hZh2qriVrQ&s", rating: 5)
+    FoodItem(name: "ABC Chicken", imageName: "https://media.discordapp.net/attachments/1267387405045071912/1279142936508104797/image.png?ex=66d35e31&is=66d20cb1&hm=34ed708f53ec25543fcd10b28a11a1d38d978a4f292259e3a8877ab825968061&=&format=webp&quality=lossless&width=700&height=492", rating: 4),
+    FoodItem(name: "El Rincon", imageName: "https://media.discordapp.net/attachments/1267387405045071912/1279142960377630720/image.png?ex=66d35e37&is=66d20cb7&hm=0ff40a9b06b02c84a0ab60450fede2211c39fc2b2f072d92fa3450ce7fe6f48e&=&format=webp&quality=lossless&width=700&height=492", rating: 5)
 ]
 
 let recentSearches = [
