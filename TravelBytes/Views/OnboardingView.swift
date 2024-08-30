@@ -6,7 +6,7 @@ struct OnboardingView: View {
 
     var body: some View {
         if isLoggedIn {
-            TabsView() // Assuming TabsView is defined elsewhere
+            TabsView()
         } else {
             if showingSignIn {
                 LoginView(showingSignIn: $showingSignIn, isLoggedIn: $isLoggedIn)
@@ -21,7 +21,6 @@ struct CreateAccountView: View {
     @Binding var showingSignIn: Bool
     @State private var email = ""
     @State private var password = ""
-    @State private var confirmPassword = ""
 
     var body: some View {
         VStack(spacing: 20) {
@@ -30,62 +29,74 @@ struct CreateAccountView: View {
             Text("Create your account")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .foregroundColor(.white)
+                .foregroundColor(Color(hex: "CE4711"))
             
-            TextField("Email", text: $email)
-                .padding()
-                .background(Color.white.opacity(0.7))
-                .cornerRadius(10)
-                .keyboardType(.emailAddress)
-                .autocapitalization(.none)
-                .padding(.horizontal)
+            VStack(alignment: .leading, spacing: 5) {
+                Text("Email")
+                    .font(.subheadline)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color(hex: "CE4711"))
+                
+                TextField("Email", text: $email)
+                    .padding()
+                    .background(Color.white.opacity(0.7))
+                    .cornerRadius(10)
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
+            }
+            .padding(.horizontal)
             
-            SecureField("Password", text: $password)
-                .padding()
-                .background(Color.white.opacity(0.7))
-                .cornerRadius(10)
-                .padding(.horizontal)
-            
-            SecureField("Confirm Password", text: $confirmPassword)
-                .padding()
-                .background(Color.white.opacity(0.7))
-                .cornerRadius(10)
-                .padding(.horizontal)
+            VStack(alignment: .leading, spacing: 5) {
+                Text("Password")
+                    .font(.subheadline)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color(hex: "CE4711"))
+                
+                SecureField("Password", text: $password)
+                    .padding()
+                    .background(Color.white.opacity(0.7))
+                    .cornerRadius(10)
+            }
+            .padding(.horizontal)
             
             Button(action: {
-                // Handle account creation action
             }) {
-                Text("CREATE ACCOUNT")
+                Text("SIGN UP")
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color(UIColor.systemGreen))
+                    .background(Color(hex: "CE4711"))
                     .cornerRadius(10)
                     .foregroundColor(.white)
             }
             .padding(.horizontal)
             
-            Spacer()
+            Text("or sign up with")
+            foregroundColor(Color(hex: "CE4711"))
             
             HStack {
-                Text("Already have an account?")
-                    .foregroundColor(.white)
+                
+                Text("Already a user?")
+                    .foregroundColor(Color(hex: "#CE4711"))
                 Button(action: {
                     withAnimation {
                         showingSignIn = true
                     }
                 }) {
-                    Text("SIGN IN")
+                    Text("LOGIN")
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color(hex: "#CE4711"))
                 }
             }
-            .padding(.bottom, 30)
+            .padding(.top, 70)
+            
+            Spacer()
         }
-        .background(Color.teal)
+        .background(Color(hex: "FCB814"))
         .edgesIgnoringSafeArea(.all)
     }
 }
+
 
 struct LoginView: View {
     @Binding var showingSignIn: Bool
@@ -100,10 +111,11 @@ struct LoginView: View {
         VStack(spacing: 20) {
             Spacer()
             
-            Text("Sign into your account")
+            Text("Sign in your account")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .foregroundColor(.white)
+                .foregroundColor(Color(hex: "#CE4711"))
+            
             
             TextField("Email", text: $email)
                 .padding()
@@ -125,7 +137,6 @@ struct LoginView: View {
                         isLoggedIn = true
                     }
                 } else {
-                    // Handle invalid credentials
                     print("Invalid credentials")
                 }
             }) {
@@ -133,14 +144,14 @@ struct LoginView: View {
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color(UIColor.systemGreen))
+                    .background(Color(hex:"#CE4711"))
                     .cornerRadius(10)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(hex:"#ffffff"))
             }
             .padding(.horizontal)
             
             Text("or sign in with")
-                .foregroundColor(.white)
+                .foregroundColor(Color(hex:"#CE4711"))
                 .padding(.top, 10)
             
             HStack(spacing: 20) {
@@ -178,11 +189,12 @@ struct LoginView: View {
             }
             .padding(.top, 20)
             
+            
             Spacer()
             
             HStack {
-                Text("Don’t have an account?")
-                    .foregroundColor(.white)
+                Text("Need an account?")
+                    .foregroundColor(Color(hex: "CE4711"))
                 Button(action: {
                     withAnimation {
                         showingSignIn = false
@@ -190,12 +202,12 @@ struct LoginView: View {
                 }) {
                     Text("SIGN UP")
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color(hex: "CE4711"))
                 }
             }
             .padding(.bottom, 30)
         }
-        .background(Color(hex: "#40E0D0"))
+        .background(Color(hex: "FCB814"))
         .edgesIgnoringSafeArea(.all)
     }
 }
