@@ -77,7 +77,7 @@ struct AnimationView: View {
 
     var body: some View {
         ZStack {
-            Color(hex: "#40E0D0")
+            Color(hex: "#FEEAB8")
                 .edgesIgnoringSafeArea(.all)
             
             Image("crumbs")
@@ -167,17 +167,17 @@ struct AnimationView: View {
                 Text("navigate •")
                     .font(.title2)
                     .bold()
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(hex: "CE4711"))
                     .offset(CGSize(width: 0.0, height: 100.0))
                 Text("explore •")
                     .font(.title2)
                     .bold()
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(hex: "CE4711"))
                     .offset(CGSize(width: 0.0, height: 100.0))
                 Text("bite")
                     .font(.title2)
                     .bold()
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(hex: "CE4711"))
                     .offset(CGSize(width: 0.0, height: 100.0))
             }
         }
