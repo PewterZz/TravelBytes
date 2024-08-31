@@ -8,11 +8,32 @@
 import SwiftUI
 
 struct SectionView: View {
+    let sectionTitle: String
+    let items: [FoodItem]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+        VStack(alignment: .leading) {
+            HStack {
+                Text(sectionTitle)
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color(hex: "CE4711"))
+                
+                Spacer()
+                
+                Button("View all") {
 
-#Preview {
-    SectionView()
+                }
+                .foregroundColor(Color(hex: "CE4711"))
+            }
+            .padding([.leading, .trailing])
+            
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 15) {
+                ForEach(items) { item in
+                    FoodItemView(item: item)
+                }
+            }
+            .padding(.horizontal)
+        }
+    }
 }
